@@ -1,0 +1,13 @@
+kubecontrol ansible_ssh_private_key_file=~/.ssh/kubeworker ansible_user=kubecontrol
+
+kubew1 ansible_ssh_private_key_file=~/.ssh/kubew1 ansible_user=kubew1
+
+kubew2 ansible_ssh_private_key_file=~/.ssh/kubew2 ansible_user=kubew2
+
+[control]
+kubecontrol
+
+[workers]
+kubew1
+kubew2
+
