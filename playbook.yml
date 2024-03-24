@@ -16,8 +16,8 @@
           - containerd
         state: present
 
-    - name: create br_filter
-      command: modprobe br_filter
+    - name: create br_netfilter
+      command: modprobe br_netfilter
 
     - name: create a containerd directory
       file:
