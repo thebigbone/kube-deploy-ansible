@@ -41,7 +41,7 @@
       lineinfile:
         path: /etc/containerd/config.toml
         regexp: '^SystemdCgroup ='
-        line: 'SystemdCgroup = true'
+        line: 'SystemdCgroup = true' # fix this shit, its not replacing the correct SystemdCgroup
   
     - name: turn off swap
       command: swapoff -a
@@ -52,6 +52,9 @@
         regexp: '^#?net.ipv4.ip_forward='
         line: 'net.ipv4.ip_forward=1'
         state: present
+
+    - name: edit /proc/sys/net/ipv4/ip_forward
+      command: echo "1" | sudo tee /proc/sys/net/ipv4/ip_forward
 
     - name: check if GPG key file exists
       stat:
