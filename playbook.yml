@@ -36,12 +36,8 @@
     - name: move it (can't directly create on /etc/containerd for some reason)
       command: mv $HOME/config.toml /etc/containerd/config.toml
 
-
-    - name: modify containerd.toml
-      lineinfile:
-        path: /etc/containerd/config.toml
-        regexp: '^SystemdCgroup ='
-        line: 'SystemdCgroup = true' # fix this shit, its not replacing the correct SystemdCgroup
+    - name: update the containerd config.toml file
+      command: sed -i 's/SystemdCgroup \= false/SystemdCgroup \= true/g' /etc/containerd/config.toml
   
     - name: turn off swap
       command: swapoff -a
